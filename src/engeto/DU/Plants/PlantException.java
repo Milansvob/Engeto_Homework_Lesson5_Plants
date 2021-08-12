@@ -1,5 +1,7 @@
 package engeto.DU.Plants;
 
-public class PlantException extends Exception{
-    public PlantException(String Message) { super(Message);}
+public class PlantException extends Exception {
+    public PlantException(String message) {
+        super(message);
+    }
 }
