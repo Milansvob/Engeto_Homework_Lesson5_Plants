@@ -1,6 +1,7 @@
 package engeto.DU.Plants;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Plant {
     private static final int INITIAL_WATERING_FREQUENCY_IN_DAYS = 7;
@@ -16,12 +17,12 @@ public class Plant {
 
         try{
         this.plantedDate = LocalDate.parse(plantedDateStr);
-        }catch (NumberFormatException e){
+        }catch (DateTimeParseException e){
             throw new PlantException("Wrong format of plant date" + e.getLocalizedMessage()); }
 
         try {
             this.lastWateringDate = LocalDate.parse(lastWateringDateStr);
-        }catch (NumberFormatException e){
+        }catch (DateTimeParseException e){
             throw new PlantException("Wrong format of plant watering frequency in days " + e.getLocalizedMessage()); }
 
         try {
