@@ -7,6 +7,7 @@ public class Main {
     public static final String PLANTS_TXT = "plants.txt";
     public static final String PLANTS_OUTPUT_TXT = "plantsOutput.txt";
     public static final String ENTER = "\n";
+    public static final String DELIMITER = "\t";
 
     public static void main(String[] args) {
 	Plant rose = new Plant("Rose","living room",7, LocalDate.of(2002,11,11),LocalDate.of(2021,8,5));
@@ -39,7 +40,9 @@ public class Main {
         }
 
         // Information about watering
-        plantList.getWateringInfoList();
+            for (Plant list : plantList.getplantArrayList()) {
+                System.out.println(list.getWateringInfo());
+            }
 
         // Two plants to be added into plantList
         plantList.addPlant(rose);
@@ -56,8 +59,16 @@ public class Main {
             System.err.println("Uploading data into file failed" + e.getLocalizedMessage());
         }
 
-        // Final report printed into console "equal to PLANTS_OUTPUT_TXT"
-         plantList.getFinallyPrintOut();
+        //Empty row to be inserted
+        System.out.println();
 
+         //Final report printed into console "equal to PLANTS_OUTPUT_TXT"
+       for (int i = 0; i < plantList.getplantArrayList().size(); i++) {
+           System.out.println(plantList.getPlant(i).getName() + DELIMITER
+                            + plantList.getPlant(i).getNotes() + DELIMITER
+                            + plantList.getPlant(i).getWateringFrequencyInDays() + DELIMITER
+                            + plantList.getPlant(i).getPlantedDate() + DELIMITER
+                            + plantList.getPlant(i).getLastWateringDate() + DELIMITER);
+       }
     }
 }

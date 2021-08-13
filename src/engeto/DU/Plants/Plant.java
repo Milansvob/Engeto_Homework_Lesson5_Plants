@@ -1,10 +1,9 @@
 package engeto.DU.Plants;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 
 public class Plant {
-    private static final int InitialWateringFrequencyInDays = 7;
+    private static final int INITIAL_WATERING_FREQUENCY_IN_DAYS = 7;
     private String name;
     private String notes;
     private int wateringFrequencyInDays;
@@ -16,8 +15,8 @@ public class Plant {
         this.notes = notesStr;
 
         try{
-        this.plantedDate = LocalDate.parse(plantedDateStr);}
-        catch (NumberFormatException e){
+        this.plantedDate = LocalDate.parse(plantedDateStr);
+        }catch (NumberFormatException e){
             throw new PlantException("Wrong format of plant date" + e.getLocalizedMessage()); }
 
         try {
@@ -44,7 +43,7 @@ public class Plant {
     }
 
     public Plant(String name, LocalDate plantedDate) {
-        this(name, "",InitialWateringFrequencyInDays, plantedDate, LocalDate.now());
+        this(name, "", INITIAL_WATERING_FREQUENCY_IN_DAYS, plantedDate, LocalDate.now());
     }
 
     public String getName() {
@@ -85,12 +84,14 @@ public class Plant {
     public int getWateringFrequencyInDays() {return wateringFrequencyInDays;}
 
     public void setWateringFrequencyInDays(int wateringFrequencyInDays) throws PlantException {
-        if (wateringFrequencyInDays < 1) throw new PlantException("Watering frequency mustn't be zero or negative. Was set " + wateringFrequencyInDays);
+        if (wateringFrequencyInDays < 1) {
+            throw new PlantException("Watering frequency mustn't be zero or negative. Was set " + wateringFrequencyInDays);
+        }
         this.wateringFrequencyInDays = wateringFrequencyInDays;
     }
 
     public String getWateringInfo() {
-        return name + ": Last watering day:" + lastWateringDate + " Recommended watering day:" + lastWateringDate.plusDays(InitialWateringFrequencyInDays);
+        return name + ": Last watering day:" + lastWateringDate + " Recommended watering day:" + lastWateringDate.plusDays(INITIAL_WATERING_FREQUENCY_IN_DAYS);
     }
 
 }

@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class PlantList {
     public static final String DELIMITER = "\t";
 
-    private List <Plant> plantList = new ArrayList<>();
+    private List <Plant> plantArrayList = new ArrayList<>();
 
     public static PlantList importFromTextFile(String fileName) throws PlantException {
         PlantList list = new PlantList();
@@ -30,9 +30,9 @@ public class PlantList {
         return list;
     }
 
-    public void exportToFile (String fileName) throws PlantException {
+    public void exportToFile(String fileName) throws PlantException {
         try (PrintWriter writer = new PrintWriter(new FileOutputStream(fileName))) {
-            for (Plant plant : plantList){
+            for (Plant plant : plantArrayList){
                 writer.println(
                         plant.getName() + DELIMITER
                         +plant.getNotes() + DELIMITER
@@ -45,33 +45,20 @@ public class PlantList {
         }
     }
 
-    public void addPlant (Plant plant){
-        plantList.add(plant);
+    public void addPlant(Plant plant){
+        plantArrayList.add(plant);
     }
 
-    public Plant getPlant (int i) {
-        return plantList.get(i);
+    public Plant getPlant(int i) {
+        return plantArrayList.get(i);
     }
 
-    public void removePlant (int i){
-        plantList.remove(i);
+    public void removePlant(int i){
+        plantArrayList.remove(i);
     }
 
-    public void getWateringInfoList() {
-        for (Plant list : plantList) {
-            System.out.println(list.getWateringInfo());
-        }
-        System.out.println();
+    public List<Plant> getplantArrayList(){
+        return plantArrayList;
     }
-
-        public void getFinallyPrintOut() {
-            for (int i = 0; i < plantList.size(); i++) {
-                System.out.println(getPlant(i).getName()+ DELIMITER
-                                 + getPlant(i).getNotes()+ DELIMITER
-                                 + getPlant(i).getWateringFrequencyInDays()+ DELIMITER
-                                 + getPlant(i).getPlantedDate()+ DELIMITER
-                                 + getPlant(i).getLastWateringDate());
-            }
-        }
-    }
+}
 
